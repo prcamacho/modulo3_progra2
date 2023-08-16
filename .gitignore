@@ -1,0 +1,73 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment directory
+venv/
+env/
+env.bak/
+
+# Compiled Python files
+*.pyc
+
+# Local development settings
+instance/
+
+# Debug log
+*.log
+
+# IDE specific
+.idea/
+.vscode/
+
+# Dependency directories
+lib/
+libs/
+lib64/
+bin/
+include/
+share/
+local/
+
+# macOS metadata
+.DS_Store
+
+# Compiled C extensions
+*.so
+
+# User-specific Python files
+*.pyo
+
+# Windows folder configuration
+Desktop.ini
+
+# Environment configuration
+.env
+
+# Virtual environment
+venv/
+Env/
+env/
+
+# Database
+db.sqlite3
+
+# Compiled files
+*.pyc
+*.pyo
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Other
+*.pyproj
+*.pidb
+*.suo
+*.user
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
