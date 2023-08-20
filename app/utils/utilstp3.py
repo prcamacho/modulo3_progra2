@@ -16,4 +16,21 @@ def format_title_case(input_string):
     formatted_string = ' '.join(title_case_words)
     return formatted_string
 
+def quitar_signos(dni1):
+    dni="".join(numero for numero in dni1 if numero.isdigit())
+    if len(dni) != 8 or dni[0]=='0':
+        return 'Error, no valido'        
+    return int(dni)
+
+#EJ10
+def format_name(name):
+    return ' '.join([part.capitalize() for part in name.split()])
+
+def validate_dni(dni):
+    dni_numeric = ''.join(char for char in dni if char.isdigit())
+
+    if len(dni_numeric) != 8:
+        return None
+
+    return int(dni_numeric)
 

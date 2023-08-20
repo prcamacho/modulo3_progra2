@@ -1,8 +1,8 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify, render_template
 from config import Config
-
-from .utils.utilstp3 import calcular_edad, format_title_case
-
+import datetime
+from .utils.utilstp3 import calcular_edad, format_title_case,quitar_signos, format_name,validate_dni
+from datetime import datetime
 def init_app():
     """Crea y configura la aplicación Flask"""
 
@@ -139,9 +139,42 @@ def init_app():
         }
         return (response, 200, {'Content-Type': 'application/json'})
 
+    #EJ9
+    @app.route('/formatted/<string:dni>')
+    def convertir_dni(dni):
+        dni_convertido = quitar_signos(dni)
+        resultado = {"formatted_dni":dni_convertido}
+        return jsonify(resultado)
+       
+    #Ej10         
+    #EJ10
+    @app.route('/format')
+    def format_user_data():
 
+        firstname = request.args.get('firstname')
+        lastname = request.args.get('lastname')
+        dob = request.args.get('dob')
+        dni = request.args.get('dni')
 
-             
+        formatted_firstname = format_name(firstname)
+        formatted_lastname = format_name(lastname)
+
+        dob_date = datetime.strptime(dob, '%Y-%m-%d')
+        today = datetime.today()
+        age = today.year - dob_date.year - ((today.month, today.day) < (dob_date.month, dob_date.day))
+
+        dni_numeric = validate_dni(dni)
+        if dni_numeric is None:
+            error_message = {'error': 'El DNI no es válido'}
+            return jsonify(error_message), 400
+        response = {
+            'firstname': formatted_firstname,
+            'lastname': formatted_lastname,
+            'age': age,
+            'dni': dni_numeric
+        }
+
+        return jsonify(response)
     
     
     @app.route('/academia/<string:user>')
